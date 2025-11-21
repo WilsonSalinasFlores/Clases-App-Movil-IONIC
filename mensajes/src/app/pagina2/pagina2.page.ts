@@ -13,5 +13,8 @@ export class Pagina2Page implements OnInit {
 
   ngOnInit() {
   }
+  volver(){
+    
+  }
 
 }

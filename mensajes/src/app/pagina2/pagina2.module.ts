@@ -1,4 +1,4 @@
-import { isStandalone, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -13,7 +13,6 @@ import { Pagina2Page } from './pagina2.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    standalone: false,
     Pagina2PageRoutingModule
   ],
   declarations: [Pagina2Page]
