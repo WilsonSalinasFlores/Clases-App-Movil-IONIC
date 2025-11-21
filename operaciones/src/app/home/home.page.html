@@ -17,9 +17,9 @@
     <ion-input type="number" label ="Resultado" [value]="txt_r"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-button color="success"  (click)="suma()">Sumar</ion-button>
-    <ion-button color="danger"  (click)="resta()">Restar</ion-button>
-    <ion-button color="tertiary"  (click)="multiplica()">Multiplicar</ion-button>
-    <ion-button color="secondary"  (click)="divide()">Dividir</ion-button>
+    <ion-button color="success"  (click)="suma()"><ion-icon name="add-outline"></ion-icon> Sumar</ion-button>
+    <ion-button color="warning"  (click)="resta()"><ion-icon name="remove-outline"></ion-icon> Restar</ion-button>
+    <ion-button color="primary"  (click)="multiplica()"><ion-icon name="close-outline"></ion-icon> Multiplicar</ion-button>
+    <ion-button color="danger"  (click)="divide()"><ion-icon name="share-social-outline"></ion-icon> Dividir</ion-button>
   </ion-item>
 </ion-content>

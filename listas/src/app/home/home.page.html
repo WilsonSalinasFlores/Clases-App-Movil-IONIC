@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Listas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="primary">
+<table width="100%">
+    <tr >
+      <td width="50%">
+        <ion-label class="ion-text-center" >Selección {{ resultado }}</ion-label>
+      <ion-list [inert]="true" lines="full">
+        <ion-list-header class="ion-text-center">
+          LISTADO DE NUMEROS
+        </ion-list-header >
+        <ion-item *ngFor="let n of numeros" (click)="mostrar(n)">
+          <ion-label class="ion-text-center"> {{ n }} </ion-label>
+        </ion-item>
+      </ion-list>
+      </td>
+      <td width="50%">
+      <ion-list >
+        <ion-list-header class="ion-text-center">
+          LISTADO DE NOMBRES
+        </ion-list-header >
+          <ion-item-sliding *ngFor="let o of nombres">
+            <ion-item-options side="start">
+              <ion-item-option color="success">info</ion-item-option>
+            </ion-item-options>
+
+            <ion-item >
+              <ion-label> {{ o }} </ion-label>
+            </ion-item> 
+            <ion-item-options side="end">
+              <ion-item-option color="warning">Editar</ion-item-option>
+              <ion-item-option color="danger">Borrar</ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </td>
+      
+    </tr>
+  </table>
+
+    <ion-list>
+    <ion-item *ngFor="let i=index;let  n of numeros">
+      {{ n }} - {{ nombres[i] }}
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let n of numeros">
+      <ion-label class="ion-text-center" > {{ n }} </ion-label>
+    </ion-item>
+  </ion-list>
+
+  
+
+  
+</ion-content>
