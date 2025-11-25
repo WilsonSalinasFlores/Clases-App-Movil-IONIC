@@ -6,6 +6,11 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MenuPage } from './menu/menu.page';
+import { RecuperarPage } from './recuperar/recuperar.page';
+import { CuentaPage } from './cuenta/cuenta.page';
+import { AcontactoPage } from './acontacto/acontacto.page';
+import { EcontactoPage } from './econtacto/econtacto.page';
 
 @NgModule({
   declarations: [AppComponent],
