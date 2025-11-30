@@ -1,42 +1,36 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>Lista de tareas</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lista de Tareas</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="abrirCrearTarea()" color="primary">
-        <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+      <ion-button color="primary">
+        
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tareas</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-list *ngIf="tareas.length > 0">
-    <ion-item *ngFor="let tarea of tareas" (click)="verDetalle(tarea)" lines="full">
+<ion-content fullscreen>
+  <ion-list>
+    <ion-item *ngFor="let tarea of tareas" detail="true" [routerLink]="['/ver-tarea', tarea.id]" routerDirection="forward">
       <ion-label>
-        <h2 [class.completada]="tarea.completada">{{ tarea.titulo }}</h2>
+        <h2>{{ tarea.titulo }}</h2>
         <p>{{ tarea.descripcion }}</p>
-        <small>Vence: {{ tarea.fechaLimite ? (tarea.fechaLimite | date:'shortDate') : '—' }}</small>
       </ion-label>
-
-      <ion-badge slot="end" [color]="badgeColor(tarea.prioridad)">{{ tarea.prioridad }}</ion-badge>
-
-      <ion-button fill="clear" color="medium" (click)="editarTarea($event, tarea)" slot="end">
-        <ion-icon slot="icon-only" name="pencil"></ion-icon>
+      <ion-button slot="end" fill="clear" color="primary" (click)="editarTarea(tarea.id)">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
       </ion-button>
-
-      <ion-button fill="clear" color="danger" (click)="eliminarTarea($event, tarea.id)" slot="end">
+      <ion-button slot="end" fill="clear" color="danger" (click)="eliminarTarea(tarea.id)">
         <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-button>
     </ion-item>
   </ion-list>
-
-  <div *ngIf="tareas.length === 0" class="ion-padding">
-    <p>No hay tareas. Pulsa + para crear una nueva tarea.</p>
-  </div>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button routerLink="/tareas/crear-tarea">
+      <ion-icon name="add" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

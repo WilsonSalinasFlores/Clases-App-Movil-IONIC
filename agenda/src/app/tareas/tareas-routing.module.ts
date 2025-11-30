@@ -7,7 +7,19 @@ const routes: Routes = [
   {
     path: '',
     component: TareasPage
+  },  {
+    path: 'crear-tarea',
+    loadChildren: () => import('./crear-tarea/crear-tarea.module').then( m => m.CrearTareaPageModule)
+  },
+  {
+    path: 'editar-tarea',
+    loadChildren: () => import('./editar-tarea/editar-tarea.module').then( m => m.EditarTareaPageModule)
+  },
+  {
+    path: 'ver-tarea',
+    loadChildren: () => import('./ver-tarea/ver-tarea.module').then( m => m.VerTareaPageModule)
   }
+
 ];
 
 @NgModule({

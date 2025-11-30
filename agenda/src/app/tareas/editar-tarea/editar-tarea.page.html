@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tareas"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar Tarea</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full" class="ion-padding">
+
+    <ion-item>
+      <ion-input label="Título" label-placement="floating" [(ngModel)]="titulo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea label="Descripción" label-placement="floating" rows="4" [(ngModel)]="descripcion"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <div class="ion-padding">
+    <ion-button expand="block" color="primary" (click)="editarTarea()">Editar Tarea</ion-button>
+  </div>
+</ion-content>

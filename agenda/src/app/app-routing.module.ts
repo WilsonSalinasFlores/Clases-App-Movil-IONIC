@@ -39,6 +39,18 @@ const routes: Routes = [
     path: 'tareas',
     loadChildren: () => import('./tareas/tareas.module').then( m => m.TareasPageModule)
   },
+  {
+    path: 'crear-tarea',
+    loadChildren: () => import('./tareas/crear-tarea/crear-tarea.module').then( m => m.CrearTareaPageModule)
+  },
+  {
+    path: 'editar-tarea/:id', 
+    loadChildren: () => import('./tareas/editar-tarea/editar-tarea.module').then( m => m.EditarTareaPageModule)
+  }  ,
+  {
+    path: 'ver-tarea/:id', 
+    loadChildren: () => import('./tareas/ver-tarea/ver-tarea.module').then( m => m.VerTareaPageModule)
+  }
 ];
 
 @NgModule({
