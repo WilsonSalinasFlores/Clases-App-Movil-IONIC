@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Acceso } from '../servicio/acceso';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,18 +9,29 @@ import { Acceso } from '../servicio/acceso';
   standalone: false,
 })
 export class HomePage {
-  usuarios:String='Juan';
-  clave:String='123';
-  constructor(public servicio: Acceso) {}
+  txt_usu:String="1203995392";
+  txt_cla:String="123456";
+  constructor(public servicio: Acceso, private navCtrl: NavController) {}
 
-  ingreso(){
-    this.servicio.crearSesion('nombre',this.usuarios.toString());
-    this.servicio.crearSesion('pwd',this.clave.toString());
-  }
-  obtenerDatos(){
-    this.servicio.obtenerSesion('nombre').then((res:any)=>{
-      this.servicio.mostrarToast(`Usuario: ${res}`, 3000);
+  login(){
+    let datos={
+      accion: 'login',
+      usuario: this.txt_usu,
+      clave: this.txt_cla
+    };
+    this.servicio.enviarDatos(datos).subscribe(async (res:any)=>{
+      if(res.estado){
+        this.servicio.crearSesion('idpersona', res.codigo);
+        this.navCtrl.navigateRoot(['/menu']);
+      }
+      else{
+        await this.servicio.mostrarToast(res.mensaje, 3000);
+      }
     });
-  
+  }
+
+  crear(){
+  }
+    recuperar(){
   }
 }

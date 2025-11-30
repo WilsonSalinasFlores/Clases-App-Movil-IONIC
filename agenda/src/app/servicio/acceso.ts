@@ -1,16 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Preferences } from '@capacitor/preferences';
 import { ToastController } from '@ionic/angular';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Acceso {
- server: string = 'http://localhost:8080/WsAgenda/Agenda.php';
+ server: string = 'http://192.168.100.7:8080/wsagenda/datos/persona.php';
 
-  constructor(private toastCtrl: ToastController) {
+  constructor(
+    private toastCtrl: ToastController,
+    public http: HttpClient
+  ) {
   
+  }
+  enviarDatos(cuerpo: any) {
+    let head=new HttpHeaders({'Content-Type':'application/json , charset=UTF-8'});
+    let opciones={
+      headers: head
+    };
+    return this.http.post(this.server, cuerpo, opciones);
   }
   async crearSesion(id: string, valor : string) {
     await Preferences.set({
@@ -35,7 +45,7 @@ export class Acceso {
       duration: tiempo,
       position: 'top',
     });
-    toast.present();
+    await toast.present();
   }
   
 }
