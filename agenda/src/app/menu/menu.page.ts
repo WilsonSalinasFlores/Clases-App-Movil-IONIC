@@ -8,14 +8,29 @@ import { Acceso } from '../servicio/acceso';
   standalone: false,
 })
 export class MenuPage implements OnInit {
-  cod_persona:String="";
+  id_persona:string="";
+  datospersona: any;
+  nombre :string="";
   constructor( public servicio: Acceso) { 
     this.servicio.obtenerSesion('idpersona').then((res:any)=>{
-      this.cod_persona=res;
+      this.id_persona=res;
+      this.dpersona(this.id_persona);
     });
   }
 
   ngOnInit() {
   }
+  dpersona(id: string){
+    let datos={
+      accion: 'consulta',
+      cod_persona: id
 
+    };
+    this.servicio.enviarDatos(datos).subscribe(async (res:any)=>{
+      if (res.estado){
+        this.datospersona=res.persona;
+        this.nombre=this.datospersona.nombre + ' ' + this.datospersona.apellido;
+      }
+    });
+  }
 }
