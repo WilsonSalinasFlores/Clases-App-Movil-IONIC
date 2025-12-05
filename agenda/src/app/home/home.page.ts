@@ -19,7 +19,7 @@ export class HomePage {
       usuario: this.txt_usu,
       clave: this.txt_cla
     };
-    this.servicio.enviarDatos(datos).subscribe(async (res:any)=>{
+    this.servicio.enviarDatos(datos,"persona").subscribe(async (res:any)=>{
       if(res.estado){
         this.servicio.crearSesion('idpersona', res.codigo);
         this.navCtrl.navigateRoot(['/menu']);

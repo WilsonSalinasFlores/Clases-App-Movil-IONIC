@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Acceso } from '../servicio/acceso';
+import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-menu',
@@ -11,8 +13,9 @@ export class MenuPage implements OnInit {
   id_persona:string="";
   datospersona: any;
   nombre :string="";
-  constructor( public servicio: Acceso) { 
-    this.servicio.obtenerSesion('idpersona').then((res:any)=>{
+  contactos :any=[]
+  constructor( public servicio: Acceso, private navCtrl: NavController) { 
+      this.servicio.obtenerSesion('idpersona').then((res:any)=>{
       this.id_persona=res;
       this.dpersona(this.id_persona);
     });
@@ -26,11 +29,29 @@ export class MenuPage implements OnInit {
       cod_persona: id
 
     };
-    this.servicio.enviarDatos(datos).subscribe(async (res:any)=>{
+    this.servicio.enviarDatos(datos,"persona").subscribe(async (res:any)=>{
       if (res.estado){
         this.datospersona=res.persona;
-        this.nombre=this.datospersona.nombre + ' ' + this.datospersona.apellido;
+        this.nombre=this.datospersona.nombre + ' ' + this.datospersona.apellido ;
+        this.lcontactos();
       }
     });
+  }
+  lcontactos(){
+    let datos={
+      accion: 'consultar',
+      cod_persona: this.id_persona
+    }
+    this.servicio.enviarDatos(datos,"contacto").subscribe((res:any)=>{
+      if (res.estado){
+        this.contactos=res.datos;
+      } else
+      {
+        this.servicio.mostrarToast(res.mensaje, 3000);
+      }
+    });
+  }
+  nuevo(){
+    this.navCtrl.navigateRoot(['contacto']);
   }
 }

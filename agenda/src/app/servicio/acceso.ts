@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class Acceso {
  server: string = 'http://192.168.100.7:8080/WSAGENDAcrud/datos/persona.php';
+ server2: string = 'http://192.168.100.7:8080/WSAGENDAcrud/datos/contacto.php';
 
   constructor(
     private toastCtrl: ToastController,
@@ -15,12 +16,13 @@ export class Acceso {
   ) {
   
   }
-  enviarDatos(cuerpo: any) {
+  enviarDatos(cuerpo: any,tabla:string) {
+    let url = tabla === "persona" ? this.server : this.server2;
     let head=new HttpHeaders({'Content-Type':'application/json , charset=UTF-8'});
     let opciones={
       headers: head
     };
-    return this.http.post(this.server, cuerpo, opciones);
+    return this.http.post(url, cuerpo, opciones);
   }
   async crearSesion(id: string, valor : string) {
     await Preferences.set({
