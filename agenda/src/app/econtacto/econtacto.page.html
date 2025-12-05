@@ -5,9 +5,24 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">econtacto</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-item>
+    <ion-label>Nombre: </ion-label>
+    <ion-input  [(ngModel)]="txtnombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Apellido: </ion-label>
+    <ion-input  [(ngModel)]="txtapellido"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Telefono: </ion-label>
+    <ion-input  [(ngModel)]="txttelefono"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Email: </ion-label>
+    <ion-input  [(ngModel)]="txtemail"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-button expand="block" color="danger" (click)="eliminar()">Eliminar</ion-button>
+  </ion-item>
 </ion-content>
+ 

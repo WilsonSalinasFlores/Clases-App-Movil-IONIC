@@ -31,7 +31,9 @@ export class HomePage {
   }
 
   crear(){
+    this.navCtrl.navigateForward(['/cuenta']);
   }
     recuperar(){
+      this.navCtrl.navigateForward(['/recuperar']);
   }
 }

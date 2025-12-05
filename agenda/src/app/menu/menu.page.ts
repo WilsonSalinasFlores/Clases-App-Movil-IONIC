@@ -54,4 +54,14 @@ export class MenuPage implements OnInit {
   nuevo(){
     this.navCtrl.navigateRoot(['contacto']);
   }
+  editar(cod_contacto:string){
+    this.servicio.crearSesion('idcontacto', cod_contacto);
+    
+    this.navCtrl.navigateRoot(['acontacto']);
+  }
+  eliminar(cod_contacto:string){
+    this.servicio.crearSesion('idcontacto', cod_contacto);
+    this.navCtrl.navigateRoot(['econtacto']);
+    
+  }
 }
