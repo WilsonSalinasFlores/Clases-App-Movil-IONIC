@@ -5,9 +5,31 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">recuperar</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-item>
+    <ion-label>Cedula: </ion-label>
+    <ion-input  [(ngModel)]="txtcedula"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>¿Nombre de su abuela paterna? </ion-label>
+    <ion-input  [(ngModel)]="txtrespuesta1"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>¿Su color Favorito? </ion-label>
+    <ion-input  [(ngModel)]="txtrespuesta2"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>¿Nombre de su animal Favorito? </ion-label>
+    <ion-input  [(ngModel)]="txtrespuesta3"></ion-input>
+  </ion-item>
+
+  <ion-item hidden="[(ngModel)]='claveVisible'">
+    <ion-label>Tu contraseña es:  </ion-label>
+    <ion-input  [(ngModel)]="txtclave"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-button expand="block" color="success" (click)="recuperar()">Recuperar Cuenta</ion-button>
+    <ion-button expand="block" color="primary" (click)="navCtrl.back()">Regresar</ion-button>
+  </ion-item>
+
 </ion-content>

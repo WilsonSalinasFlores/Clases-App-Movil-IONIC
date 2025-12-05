@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class Acceso {
- server: string = 'http://192.168.100.7:8080/WSAGENDAcrud/datos/persona.php';
- server2: string = 'http://192.168.100.7:8080/WSAGENDAcrud/datos/contacto.php';
+ server: string = 'http://192.168.100.195:8080/WSAGENDAcrud/datos/persona.php';
+ server2: string = 'http://192.168.100.195:8080/WSAGENDAcrud/datos/contacto.php';
 
   constructor(
     private toastCtrl: ToastController,
