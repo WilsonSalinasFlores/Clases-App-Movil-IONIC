@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Preferences } from '@capacitor/preferences';
 import { ToastController } from '@ionic/angular';
 @Injectable({
@@ -6,27 +7,29 @@ import { ToastController } from '@ionic/angular';
 })
 export class Tareas {
   
-  
-  public tareas:Array<any>=[];
+  private tareasSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  public tareas$ = this.tareasSubject.asObservable();
+  public tareas: Array<any> = [];
   constructor(private toastCtrl: ToastController) { 
     
     // cargar tareas desde el storage al crear el servicio
     this.cargarTareas();
   }
-  async crearTarea(titulo:string, descripcion:string){
+  async crearTarea(titulo:string, descripcion:string, fecha:string | null){
     await this.cargarTareas();
-    let tarea={id:this.obtenerUltimoId()+1, titulo:titulo, descripcion:descripcion};
+    let tarea={id:this.obtenerUltimoId()+1, titulo:titulo, descripcion:descripcion, fecha: fecha || null};
     this.tareas.push(tarea);
     await Preferences.set({
       key: 'tareas',
       value: JSON.stringify(this.tareas),
     });
+    this.tareasSubject.next(this.tareas);
 
   }
   async obtenerTareas(){
     // devuelve un arreglo de tareas (vacío si no existe)
-    const item = await Preferences.get({ key: 'tareas' });
-    return item.value;
+    await this.cargarTareas();
+    return this.tareas;
   }
   async eliminarTarea(id:number){
     await this.cargarTareas();
@@ -35,12 +38,13 @@ export class Tareas {
       key: 'tareas',
       value: JSON.stringify(this.tareas),
     });
+    this.tareasSubject.next(this.tareas);
   }
-  async  editarTarea(id:number, titulo:string, descripcion:string){
+  async  editarTarea(id:number, titulo:string, descripcion:string, fecha:string | null){
     await this.cargarTareas();
     this.tareas=this.tareas.map(tarea=>{
       if(tarea.id===id){
-        return {id:id, titulo:titulo, descripcion:descripcion};
+        return {id:id, titulo:titulo, descripcion:descripcion, fecha: fecha};
       }
       return tarea;
     });
@@ -48,6 +52,7 @@ export class Tareas {
       key: 'tareas',
       value: JSON.stringify(this.tareas),
     });
+    this.tareasSubject.next(this.tareas);
   }
   obtenerTareaPorId(id:number){
     return this.tareas.find(tarea=>tarea.id===id);
@@ -70,7 +75,7 @@ export class Tareas {
     await toast.present();
   }
 
-  // Carga las tareas desde Preferences y las deja en this.tareas
+ 
   async cargarTareas():Promise<any[]>{
     try{
       const res = await Preferences.get({key:'tareas'});
@@ -83,6 +88,7 @@ export class Tareas {
       console.warn('Error cargando tareas desde Preferences', e);
       this.tareas = [];
     }
+    this.tareasSubject.next(this.tareas);
     return this.tareas;
   }
 

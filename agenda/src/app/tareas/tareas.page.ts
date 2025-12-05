@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Tareas } from '../servicio/tareas';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,34 +10,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./tareas.page.scss'],
   standalone: false,
 })
-export class TareasPage implements OnInit {
-  tareas:any[]=[];
-  constructor( 
-    private servicio:Tareas,
+export class TareasPage implements OnInit, OnDestroy {
+  tareas: any[] = [];
+  private sub!: Subscription;
+
+  constructor(
+    private servicio: Tareas,
     private router: Router
-  ) { 
-    
-    this.obtenberTareas(); 
-    
-  }
-  obtenberTareas(){
-    this.servicio.obtenerTareas().then((data:any)=>{
-      if(data){
-        this.tareas=JSON.parse(data);
-      } 
-    });
-  }
+  ) {}
   editarTarea(id:number){
-    
     this.router.navigate(['/editar-tarea', id]);
+  }
+  verDetalle(id:number){
+    this.router.navigate(['/ver-tarea', id]);
   }
   eliminarTarea(id:number){
     this.servicio.eliminarTarea(id).then(()=>{
-      this.obtenberTareas();
+  
     });
   }
   ngOnInit() {
-    this.obtenberTareas();
+  
+    this.sub = this.servicio.tareas$.subscribe((t: any[]) => {
+      this.tareas = Array.isArray(t) ? t : [];
+    });
+  }
+
+  
+  ionViewWillEnter() {
+  
+    this.servicio.cargarTareas?.();
+  }
+
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
+  }
+
+  formatFecha(fecha?: string | null): string {
+    if (!fecha) return '—';
+    // esperar formato YYYY-MM-DD
+    const parts = fecha.split('-');
+    if (parts.length !== 3) return fecha;
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
   }
 
 }

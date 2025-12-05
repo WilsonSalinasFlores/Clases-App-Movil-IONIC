@@ -18,12 +18,19 @@
     <ion-card-header>
       <ion-card-title>{{ titulo }}</ion-card-title>
       
+    
     </ion-card-header>
-
+    
     <ion-card-content>
-      <p><strong>Descripción:</strong> {{ descripcion }}</p>
+      <p><strong></strong> {{ descripcion }}</p>
       
-      
+      <ion-item lines="none" class="ion-margin-top">
+        <ion-icon name="calendar-outline" slot="start"></ion-icon>
+        <ion-label>
+          <p>Fecha Límite:</p>
+          <h3>{{ formatFecha(fecha) }}</h3>
+        </ion-label>
+      </ion-item>  
       
     </ion-card-content>
   </ion-card>

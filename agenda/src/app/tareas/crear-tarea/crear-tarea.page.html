@@ -1,25 +1,48 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button default-href="/tareas"></ion-back-button>
     </ion-buttons>
-    <ion-title> Crear Tarea</ion-title>
+    <ion-title>Nueva Tarea</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list lines="full" class="ion-padding">
+<ion-content class="ion-padding">
+
+  <ion-list lines="full">
 
     <ion-item>
-      <ion-input label="Título" label-placement="floating" [(ngModel)]="titulo"></ion-input>
+      <ion-icon name="bookmark-outline" slot="start" color="medium"></ion-icon>
+      <ion-input label="Título de la Tarea" label-placement="floating" [(ngModel)]="titulo" required></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-textarea label="Descripción" label-placement="floating" rows="4" [(ngModel)]="descripcion"></ion-textarea>
+      <ion-icon name="text-outline" slot="start" color="medium"></ion-icon>
+      <ion-textarea label="Detalles o Descripción" label-placement="floating" rows="5" [(ngModel)]="descripcion"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="calendar-outline" slot="start" color="medium"></ion-icon>
+      
+      <ion-datetime
+      [(ngModel)]="fecha"
+      displayFormat="DD/MM/YYYY"
+      pickerFormat="DD [de] MMMM [de] YYYY"
+      placeholder="Selecciona una fecha"
+      cancelText="Cancelar"
+      doneText="Aceptar"
+      color="primary">
+      </ion-datetime>
+    
     </ion-item>
   </ion-list>
 
-  <div class="ion-padding">
-    <ion-button expand="block" color="primary" (click)="guardarTarea()">Guardar Tarea</ion-button>
-  </div>
+  <ion-button expand="block" color="success" class="ion-margin-top" (click)="guardarTarea()">
+    <ion-icon name="save-outline" slot="start"></ion-icon>
+    Guardar Tarea
+  </ion-button>
+  
+  <ion-button expand="block" fill="clear" color="danger" (click)="cancelar()" class="ion-margin-top">
+    <ion-icon name="close-circle-outline" slot="start"></ion-icon>
+    Cancelar
+  </ion-button>
 </ion-content>
