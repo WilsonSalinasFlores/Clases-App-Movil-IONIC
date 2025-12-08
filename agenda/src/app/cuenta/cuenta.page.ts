@@ -41,6 +41,11 @@ export class CuentaPage implements OnInit {
       respuesta2: this.txtrespuesta2,
       respuesta3: this.txtrespuesta3
     };
+    //validar que no vengan espacios vacíos
+    if (this.txtcedula.trim() === "" || this.txtnombre.trim() === "" || this.txtapellido.trim() === "" || this.txtclave.trim() === "" || this.txtemail.trim() === "" || this.txtrespuesta1.trim() === "" || this.txtrespuesta2.trim() === "" || this.txtrespuesta3.trim() === "") {
+      this.servicio.mostrarToast("Por favor complete todos los campos.", 3000);
+      return;
+    }
     this.servicio.enviarDatos(datos,"persona").subscribe(async (res:any)=>{
       if (res.estado){
         await this.servicio.mostrarToast(res.mensaje, 3000);

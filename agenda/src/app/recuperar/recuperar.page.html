@@ -1,35 +1,53 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>recuperar</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Recuperar Contraseña</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-label>Cedula: </ion-label>
-    <ion-input  [(ngModel)]="txtcedula"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>¿Nombre de su abuela paterna? </ion-label>
-    <ion-input  [(ngModel)]="txtrespuesta1"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>¿Su color Favorito? </ion-label>
-    <ion-input  [(ngModel)]="txtrespuesta2"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>¿Nombre de su animal Favorito? </ion-label>
-    <ion-input  [(ngModel)]="txtrespuesta3"></ion-input>
-  </ion-item>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Verifica tu identidad</ion-card-title>
+        <ion-card-subtitle>Responde las preguntas de seguridad</ion-card-subtitle>
+      </ion-card-header>
 
-  <ion-item hidden="[(ngModel)]='claveVisible'">
-    <ion-label>Tu contraseña es:  </ion-label>
-    <ion-input  [(ngModel)]="txtclave"></ion-input>
-  </ion-item>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Cédula</ion-label>
+          <ion-input [(ngModel)]="txtcedula" type="text" pattern="[0-9]*" inputmode="numeric"></ion-input>
+        </ion-item>
 
-  <ion-item>
-    <ion-button expand="block" color="success" (click)="recuperar()">Recuperar Cuenta</ion-button>
-    <ion-button expand="block" color="primary" (click)="navCtrl.back()">Regresar</ion-button>
-  </ion-item>
+        <ion-item>
+          <ion-label position="floating">¿Cuál es el nombre de tu primera mascota?</ion-label>
+          <ion-input [(ngModel)]="txtrespuesta1" type="text"></ion-input>
+        </ion-item>
 
+        <ion-item>
+          <ion-label position="floating">¿En qué ciudad naciste?</ion-label>
+          <ion-input [(ngModel)]="txtrespuesta2" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">¿Cuál es tu comida favorita?</ion-label>
+          <ion-input [(ngModel)]="txtrespuesta3" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item [hidden]="claveOculta" lines="none">
+          <ion-label position="stacked" color="success">
+            <strong>Tu contraseña es:</strong>
+          </ion-label>
+          <ion-input [(ngModel)]="txtclave" readonly></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" color="success" (click)="recuperar()" class="ion-margin-top">
+          Recuperar Cuenta
+        </ion-button>
+        
+        <ion-button expand="block" fill="outline" color="medium" (click)="navCtrl.back()">
+          Regresar
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

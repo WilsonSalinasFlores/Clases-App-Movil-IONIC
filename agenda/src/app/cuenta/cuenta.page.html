@@ -1,45 +1,72 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Crear Cuenta</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-label>Cedula: </ion-label>
-    <ion-input  [(ngModel)]="txtcedula"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Nombre: </ion-label>
-    <ion-input  [(ngModel)]="txtnombre"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Apellido: </ion-label>
-    <ion-input  [(ngModel)]="txtapellido"></ion-input>
-  </ion-item>
-    <ion-item>
-    <ion-label>Clave: </ion-label>
-    <ion-input  [(ngModel)]="txtclave" type="password"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Email: </ion-label>
-    <ion-input  [(ngModel)]="txtemail"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>¿Nombre de su abuela paterna? </ion-label>
-    <ion-input  [(ngModel)]="txtrespuesta1"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>¿Su color Favorito? </ion-label>
-    <ion-input  [(ngModel)]="txtrespuesta2"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>¿Nombre de su animal Favorito? </ion-label>
-    <ion-input  [(ngModel)]="txtrespuesta3"></ion-input>
-  </ion-item>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="form-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Información Personal</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <ion-item lines="full">
+          <ion-label position="floating">Cédula</ion-label>
+          <ion-input [(ngModel)]="txtcedula" type="text" pattern="[0-9]*" inputmode="numeric"></ion-input>
+        </ion-item>
+        
+        <ion-item lines="full">
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input [(ngModel)]="txtnombre" type="text"></ion-input>
+        </ion-item>
+        
+        <ion-item lines="full">
+          <ion-label position="floating">Apellido</ion-label>
+          <ion-input [(ngModel)]="txtapellido" type="text"></ion-input>
+        </ion-item>
+        
+        <ion-item lines="full">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input [(ngModel)]="txtemail" type="email"></ion-input>
+        </ion-item>
+        
+        <ion-item lines="full">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input [(ngModel)]="txtclave" type="password"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-item>
-    <ion-button expand="block" color="warning" (click)="guardar()">Crear Persona</ion-button>
-  </ion-item>
+    <ion-card>
+      <ion-card-header>
+      <ion-card-title>Preguntas de Seguridad</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+      <ion-item lines="full">
+        <ion-label position="floating">¿Cuál es el nombre de tu primera mascota?</ion-label>
+        <ion-input [(ngModel)]="txtrespuesta1" type="text"></ion-input>
+      </ion-item>
+      
+      <ion-item lines="full">
+        <ion-label position="floating">¿En qué ciudad naciste?</ion-label>
+        <ion-input [(ngModel)]="txtrespuesta2" type="text"></ion-input>
+      </ion-item>
+      
+      <ion-item lines="full">
+        <ion-label position="floating">¿Cuál es tu comida favorita?</ion-label>
+        <ion-input [(ngModel)]="txtrespuesta3" type="text"></ion-input>
+      </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button expand="block" color="primary" (click)="guardar()" class="ion-margin-top">
+      Crear Cuenta
+    </ion-button>
+    <ion-button expand="block" fill="outline" color="medium" (click)="navCtrl.back()" class="ion-margin-top">
+      Regresar
+    </ion-button>
+  </div>
 </ion-content>
- 
