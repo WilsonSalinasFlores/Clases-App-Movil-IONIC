@@ -6,40 +6,30 @@
 
 <ion-content [fullscreen]="true">
   <ion-item>
-    <ion-label>Cedula: </ion-label>
-    <ion-input  [(ngModel)]="txtcedula"></ion-input>
+    <ion-input label="Cédula:" type="number" [(ngModel)]="txt_cedula" (focusout)="vCedula()"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Nombre: </ion-label>
-    <ion-input  [(ngModel)]="txtnombre"></ion-input>
+    <ion-input label="Nombres:" type="text" [(ngModel)]="txt_nombres"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Apellido: </ion-label>
-    <ion-input  [(ngModel)]="txtapellido"></ion-input>
-  </ion-item>
-    <ion-item>
-    <ion-label>Clave: </ion-label>
-    <ion-input  [(ngModel)]="txtclave" type="password"></ion-input>
+    <ion-input label="Apellido:" type="text" [(ngModel)]="txt_apellido"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Email: </ion-label>
-    <ion-input  [(ngModel)]="txtemail"></ion-input>
+    <ion-input label="Correo Electrónico:" type="email" [(ngModel)]="txt_correo" ></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>¿Nombre de su abuela paterna? </ion-label>
-    <ion-input  [(ngModel)]="txtrespuesta1"></ion-input>
+    <ion-input label="Clave:" type="password" [(ngModel)]="txt_clave" (focusout)="vClave()"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>¿Su color Favorito? </ion-label>
-    <ion-input  [(ngModel)]="txtrespuesta2"></ion-input>
+    <ion-input label="Verificar Clave:" type="password" [(ngModel)]="txt_clave2" (focusout)="vClave()" ></ion-input>
+    <ion-label color="danger">{{mensaje}}</ion-label>
   </ion-item>
   <ion-item>
-    <ion-label>¿Nombre de su animal Favorito? </ion-label>
-    <ion-input  [(ngModel)]="txtrespuesta3"></ion-input>
+    <ion-button (click)="guardar()" [disabled]="bloqueado" color="success">Crear Cuenta</ion-button>
+    <ion-button (click)="cancelar()" color="danger">Cancelar</ion-button>
   </ion-item>
-
   <ion-item>
-    <ion-button expand="block" color="warning" (click)="guardar()">Crear Persona</ion-button>
+    
   </ion-item>
 </ion-content>
  
