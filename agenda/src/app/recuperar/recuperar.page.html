@@ -5,31 +5,44 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+<ion-card color="warning">
+  <ion-card-header>
+    <ion-card-title>Recuperar Cuenta</ion-card-title>
+  </ion-card-header>
+  <ion-card-content> 
   <ion-item>
-    <ion-label>Cedula: </ion-label>
-    <ion-input  [(ngModel)]="txtcedula"></ion-input>
+    <ion-input label="Cédula" [(ngModel)]="txt_cedula"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label>¿Nombre de su abuela paterna? </ion-label>
-    <ion-input  [(ngModel)]="txtrespuesta1"></ion-input>
+    <ion-item>
+    <ion-input label="Correo" [(ngModel)]="txt_correo"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label>¿Su color Favorito? </ion-label>
-    <ion-input  [(ngModel)]="txtrespuesta2"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>¿Nombre de su animal Favorito? </ion-label>
-    <ion-input  [(ngModel)]="txtrespuesta3"></ion-input>
-  </ion-item>
+  </ion-card-content>
+</ion-card>
 
-  <ion-item hidden="[(ngModel)]='claveVisible'">
-    <ion-label>Tu contraseña es:  </ion-label>
-    <ion-input  [(ngModel)]="txtclave"></ion-input>
-  </ion-item>
+<ion-card color="primary">
+  <ion-card-header>
+    <ion-card-title>Nueva Clave</ion-card-title>
+    
+  </ion-card-header>
 
+  <ion-card-content>
+    <ion-item>
+      <ion-badge>Responda las siguientes preguntas de forma correcta</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Clave" [(ngModel)]="txt_clave" (focusout)="vClave()"></ion-input>
+    </ion-item>
+      <ion-item>
+      <ion-input label="Confirmar Clave" [(ngModel)]="txt_clave2" (focusout)="vClave()"></ion-input>
+      <ion-label color="danger">{{mensaje}}</ion-label>
+      
+    </ion-item>
+     
+  </ion-card-content>
+</ion-card>
   <ion-item>
-    <ion-button expand="block" color="success" (click)="recuperar()">Recuperar Cuenta</ion-button>
-    <ion-button expand="block" color="primary" (click)="navCtrl.back()">Regresar</ion-button>
+    <ion-button expand="block" color="success" (click)="cambiarClave()">Recuperar Cuenta</ion-button>
+    <ion-button expand="block" color="primary" (click)="cancelar()">Regresar</ion-button>
   </ion-item>
 
 </ion-content>

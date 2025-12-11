@@ -57,8 +57,8 @@ export class CuentaPage implements OnInit {
       let datos = {
         accion: 'crear',
         cedula: this.txt_cedula,
-        nombres: this.txt_nombres,
-        apellidos: this.txt_apellido,
+        nombre: this.txt_nombres,
+        apellido: this.txt_apellido,
         clave: this.txt_clave,
         telefono: this.txt_telefono,
         correo: this.txt_correo

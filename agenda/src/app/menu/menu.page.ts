@@ -64,4 +64,8 @@ export class MenuPage implements OnInit {
     this.navCtrl.navigateRoot(['econtacto']);
     
   }
+  cerrar(){
+    this.servicio.cerrarSesion();
+    this.navCtrl.navigateRoot(['/home']);
+  }
 }

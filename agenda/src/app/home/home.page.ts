@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Acceso } from '../servicio/acceso';
 import { ModalController, NavController } from '@ionic/angular';
 import { CuentaPage } from '../cuenta/cuenta.page';
+import { RecuperarPage } from '../recuperar/recuperar.page';
 
 @Component({
   selector: 'app-home',
@@ -37,7 +38,10 @@ export class HomePage {
     });
     await modal.present();
   }
-    recuperar(){
-      this.navCtrl.navigateForward(['/recuperar']);
+  async recuperar(){
+      const modal=await this.modalCtrl.create({
+        component: RecuperarPage
+      });
+      await modal.present();
   }
 }
