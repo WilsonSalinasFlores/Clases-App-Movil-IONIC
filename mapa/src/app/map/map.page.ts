@@ -120,6 +120,7 @@ private icono= L.icon({
         this.mapa.removeLayer(marcador)
       }
     })
+    this.marcadores = []
   }
 }
  
