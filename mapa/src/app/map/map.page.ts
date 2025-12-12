@@ -59,7 +59,7 @@ private icono= L.icon({
                   Lng: ${latLng.lng.toFixed(6)}`
     marcador.bindPopup(texto || textom)
    
-    marcador.on('dbclick',()=>{
+    marcador.on('dblclick',()=>{
       this.limpiarMarcador(marcador)
     })
     this.marcadores.push(marcador)
